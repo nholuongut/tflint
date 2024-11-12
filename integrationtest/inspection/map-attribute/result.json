@@ -1,0 +1,25 @@
+{
+  "issues": [
+    {
+      "rule": {
+        "name": "aws_instance_map_eval_example",
+        "severity": "error",
+        "link": ""
+      },
+      "message": "instance tags: map[string]string{\"foo\":\"bar\"}",
+      "range": {
+        "filename": "template.tf",
+        "start": {
+          "line": 2,
+          "column": 10
+        },
+        "end": {
+          "line": 2,
+          "column": 25
+        }
+      },
+      "callers": []
+    }
+  ],
+  "errors": []
+}

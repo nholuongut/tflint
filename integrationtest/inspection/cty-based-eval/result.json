@@ -1,0 +1,25 @@
+{
+  "issues": [
+    {
+      "rule": {
+        "name": "aws_autoscaling_group_cty_eval_example",
+        "severity": "error",
+        "link": ""
+      },
+      "message": "autoscaling tags: []rules.tag{rules.tag{Key:\"foo\", Value:\"bar\", PropagateAtLaunch:true}}",
+      "range": {
+        "filename": "template.tf",
+        "start": {
+          "line": 8,
+          "column": 10
+        },
+        "end": {
+          "line": 8,
+          "column": 18
+        }
+      },
+      "callers": []
+    }
+  ],
+  "errors": []
+}

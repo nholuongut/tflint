@@ -1,0 +1,14 @@
+run:
+  timeout: 5m
+linters:
+  enable:
+    - gci
+    - gofmt
+    - copyloopvar
+issues:
+  exclude-dirs:
+    - terraform/
+  exclude-rules:
+    - path: terraform/
+      linters:
+        - gosimple

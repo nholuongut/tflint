@@ -1,0 +1,38 @@
+name: release
+
+on:
+  push:
+    branches:
+    - '!*'
+    tags:
+    - v*.*.*
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  goreleaser:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      with:
+        submodules: true
+    - name: Set up Go
+      uses: actions/setup-go@0a12ed9d6a96ab950c8f026ed9f722fe0da7ef32 # v5
+      with:
+        go-version-file: 'go.mod'
+    - name: Install Cosign
+      uses: sigstore/cosign-installer@dc72c7d5c4d10cd6bcb8cf6e3fd625a9e5e537da # v3.7.0
+    - name: Run GoReleaser
+      uses: goreleaser/goreleaser-action@286f3b13b1b49da4ac219696163fb8c1c93e1200 # v6
+      with:
+        version: v2.3.2
+        args: release --release-notes tools/release/release-note.md
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/attest-build-provenance@1c608d11d69870c2092266b3f9a6f3abbf17002c # v1
+      with:
+        subject-path: 'dist/checksums.txt'
